@@ -31,7 +31,6 @@ $(document).ready(function() {
       url: url,
       data: dataString,
       success: function(data) {
-        console.log(data)
         $('#section').fadeIn(1000).html(data);
       }
     });
