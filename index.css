@@ -29,3 +29,11 @@
   margin-bottom: 16px;
   text-align: left;
 }
+
+.paginationContainer {
+  display: flex;
+}
+
+.pagination {
+  margin: 0 auto;
+}

@@ -18,12 +18,18 @@
        $url = "http://newsapi.org/v2/top-headlines?country=us&apiKey=77fc7d5e7fe74f938feb2d1cb84aa141";
        $response = file_get_contents($url);
        $newsData = json_decode($response);
+
+       $urlRandomUser = "https://randomuser.me/api/?results=100";
+       $responseUser = file_get_contents($urlRandomUser);
+       $users = json_decode($responseUser);
+
     ?>
     <div class="jumbotron header">
       <h1>News Blog</h1>
     </div>
     <div class="container-fluid">
       <?php
+        $authors = $users->results;
         $num_total_registros = count($newsData->articles);
          
         //Si hay registros
@@ -44,6 +50,7 @@
   
           $offset = ($pageNum - 1) * $rowsPerPage;    //numero de registro donde comienza la siguiente página
           $total_paginas = ceil($num_total_registros / $rowsPerPage);   //total paginas a mostrar
+          $idx = 0;
   
           foreach(
             array_slice($newsData->articles, $offset, $rowsPerPage)
@@ -63,7 +70,10 @@
             <?php echo $news->content ?>
           </div>
           <div class="block">
-            Author: <?php echo $news->author ?>
+            Author:
+            <?php
+              echo $authors[$idx]->name->first . ' ' . $authors[$idx]->name->last;
+            ?>
           </div>
           <div class="block">
             Published: <?php echo $news->publishedAt ?>
@@ -71,19 +81,20 @@
         </div>
       </div>
       <?php
-          }
-        }
+            $idx++;
+          } //se cierra foreach
+        } //se cierra if
       ?>
       <?php
         //validamos que haya mas de 1 pagina
         if ($total_paginas > 1) {
       ?>
-      <div class="contenedorPaginacion">
-        <nav class="navbar navbar-fixed-bottom">
+      <div class="paginationContainer">
+        <nav class="navbar navbar-fixed-bottom pagination">
           <ul class="pagination">
             <!--si la página seleccionada es diferente a 1-->
             <?php
-              if ($pageNum != 1)
+              if ($pageNum != 1) {
             ?>
             <!--se muestra "Anterior" para retroceder de página-->
             <li class="page-item">
@@ -95,6 +106,9 @@
                 &laquo;
               </a>
             </li>
+            <?php
+              }
+            ?>
             <?php
               //se recorre el total de las páginas para ir dibujandolas en la paginación
               for ($i=1; $i <= $total_paginas ; $i++) {
@@ -126,17 +140,20 @@
             ?>
             <!--se muestra "siguiente" para avanzar de página-->
             <?php
-              if ($pageNum != $total_paginas)
+              if ($pageNum != $total_paginas) {
             ?>
             <li class="page-item">
               <a
                 class="pagina page-link"
-                data-link="/"
+                data-link="index.php"
                 data="<?php echo $pageNum + 1; ?>"
               >
                 &raquo;
               </a>
             </li>
+            <?php
+              } //se cierra if
+            ?>
           </ul>
         </nav>
       </div>
