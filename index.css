@@ -1,14 +1,19 @@
 .header {
   text-align: center;
-  background-color: #8D08DB;
+  background-color: #4267B2;;
   color: white;
+  height: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.container {
+.newContainer {
   display: flex;
   background-color: rgba(0, 0, 0, 0.02) !important;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 8px;
   text-align: center;
+  cursor: pointer;
 }
 
 .content {
@@ -32,8 +37,10 @@
 
 .paginationContainer {
   display: flex;
+  margin-bottom: 25px;
 }
 
 .pagination {
   margin: 0 auto;
+  cursor: pointer;
 }
