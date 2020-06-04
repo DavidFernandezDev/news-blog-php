@@ -5,15 +5,19 @@
 }
 
 .container {
+  display: flex;
   background-color: rgba(0, 0, 0, 0.02) !important;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 8px;
   text-align: center;
 }
 
+.content {
+  margin-left: 20px;
+}
+
 .image {
-  width: 65%;
+  width: 30%;
   height: auto;
-  margin-bottom: 15px;
 }
 
 .title {
