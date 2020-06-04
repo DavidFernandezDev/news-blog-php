@@ -1,0 +1,27 @@
+.header {
+  text-align: center;
+  background-color: #8D08DB;
+  color: white;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 8px;
+  text-align: center;
+}
+
+.image {
+  width: 65%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.block {
+  margin-bottom: 16px;
+  text-align: left;
+}
